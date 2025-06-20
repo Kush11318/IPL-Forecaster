@@ -65,7 +65,7 @@ export function AppSidebar() {
           <SidebarMenu>
             {mainNavItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <Link href={item.href} passHref legacyBehavior>
+                <Link href={item.href}>
                   <SidebarMenuButton
                     asChild
                     isActive={isActive(item.href, item.matchSegments)}
@@ -87,7 +87,7 @@ export function AppSidebar() {
            <SidebarMenu>
             {secondaryNavItems.map((item) => (
                  <SidebarMenuItem key={item.label}>
-                 <Link href={item.href} passHref legacyBehavior>
+                 <Link href={item.href}>
                    <SidebarMenuButton
                      asChild
                      isActive={isActive(item.href, item.matchSegments)}
