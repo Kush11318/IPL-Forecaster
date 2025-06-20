@@ -1,9 +1,9 @@
+
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  SidebarProvider,
   Sidebar,
   SidebarHeader,
   SidebarContent,
@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Home, ListChecks, Cpu, BarChart3, DollarSign, Settings, LogOut, LucideIcon, HelpCircle } from 'lucide-react';
+import { Home, ListChecks, Cpu, BarChart3, DollarSign, Settings, LogOut, type LucideIcon, HelpCircle } from 'lucide-react';
 import { BatIcon, BallIcon, StadiumIcon } from '@/components/icons/cricket-icons';
 import Image from 'next/image';
 
@@ -52,7 +52,6 @@ export function AppSidebar() {
   };
   
   return (
-    <SidebarProvider defaultOpen>
       <Sidebar collapsible="icon">
         <SidebarHeader className="p-4 flex items-center gap-2">
            <Link href="/dashboard" className="flex items-center gap-2 group-data-[[data-collapsible=icon]]:hidden">
@@ -118,6 +117,5 @@ export function AppSidebar() {
            </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
-    </SidebarProvider>
   );
 }
