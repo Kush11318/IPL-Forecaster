@@ -65,19 +65,17 @@ export function AppSidebar() {
           <SidebarMenu>
             {mainNavItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <Link href={item.href}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={isActive(item.href, item.matchSegments)}
-                    tooltip={{ children: item.label, className: "font-headline" }}
-                    className="font-body"
-                  >
-                    <a>
-                      <item.icon className="h-5 w-5" />
-                      <span className="group-data-[[data-collapsible=icon]]:hidden">{item.label}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </Link>
+                <SidebarMenuButton
+                  asChild
+                  isActive={isActive(item.href, item.matchSegments)}
+                  tooltip={{ children: item.label, className: "font-headline" }}
+                  className="font-body"
+                >
+                  <Link href={item.href}>
+                    <item.icon className="h-5 w-5" />
+                    <span className="group-data-[[data-collapsible=icon]]:hidden">{item.label}</span>
+                  </Link>
+                </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
@@ -87,32 +85,27 @@ export function AppSidebar() {
            <SidebarMenu>
             {secondaryNavItems.map((item) => (
                  <SidebarMenuItem key={item.label}>
-                 <Link href={item.href}>
                    <SidebarMenuButton
                      asChild
                      isActive={isActive(item.href, item.matchSegments)}
                      tooltip={{ children: item.label, className: "font-headline" }}
                      className="font-body"
                    >
-                     <a>
+                     <Link href={item.href}>
                        <item.icon className="h-5 w-5" />
                        <span className="group-data-[[data-collapsible=icon]]:hidden">{item.label}</span>
-                     </a>
+                     </Link>
                    </SidebarMenuButton>
-                 </Link>
                </SidebarMenuItem>
             ))}
              <SidebarMenuItem>
                 <SidebarMenuButton 
-                  asChild
                   tooltip={{ children: "Logout", className: "font-headline"}} 
                   className="font-body text-destructive hover:bg-destructive/10 hover:text-destructive"
                   onClick={() => alert("Logout functionality not implemented.")}
                  >
-                  <button type="button">
                     <LogOut className="h-5 w-5" />
                     <span className="group-data-[[data-collapsible=icon]]:hidden">Logout</span>
-                  </button>
                 </SidebarMenuButton>
             </SidebarMenuItem>
            </SidebarMenu>
