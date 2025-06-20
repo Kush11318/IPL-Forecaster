@@ -1,3 +1,4 @@
+
 export interface Match {
   id: string;
   team1: string;
@@ -68,4 +69,13 @@ export interface PredictionOutput {
   winningTeam: string;
   confidence: number; // 0-1
   rationale: string;
+}
+
+// For analyzeCustomDataset AI flow
+export interface AnalyzeCustomDatasetInput {
+  customDataset: string;
+}
+
+export interface AnalyzeCustomDatasetOutput {
+  analysis: string;
 }

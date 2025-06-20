@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Home, ListChecks, Cpu, BarChart3, DollarSign, Settings, LogOut, type LucideIcon, HelpCircle } from 'lucide-react';
+import { Home, ListChecks, Cpu, BarChart3, DollarSign, Settings, LogOut, type LucideIcon, HelpCircle, FileSearch } from 'lucide-react';
 import { BatIcon, BallIcon, StadiumIcon } from '@/components/icons/cricket-icons';
 import Image from 'next/image';
 
@@ -31,6 +31,7 @@ const mainNavItems: NavItem[] = [
   { href: '/predictions', label: 'Predictions', icon: Cpu, matchSegments: 1 },
   { href: '/matches', label: 'Matches', icon: BallIcon, matchSegments: 1 },
   { href: '/historical-data', label: 'Historical Data', icon: BarChart3, matchSegments: 1 },
+  { href: '/analyze-dataset', label: 'Analyze Dataset', icon: FileSearch, matchSegments: 1 },
   { href: '/betting-sites', label: 'Betting Sites', icon: DollarSign, matchSegments: 1 },
 ];
 
