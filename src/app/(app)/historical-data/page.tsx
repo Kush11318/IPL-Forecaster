@@ -9,11 +9,11 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Search, Filter, Users, Shield, BarChartHorizontalBig, RotateCcw } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function HistoricalDataPage() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState('playerStats');
+  const [activeTab, setActiveTab] = useState('playerAnalysis');
 
   const filteredPlayerStats = useMemo(() => {
     return mockPlayerStats.filter(stat =>
@@ -42,7 +42,7 @@ export default function HistoricalDataPage() {
     <div>
       <PageHeader
         title="Historical Data"
-        description="Explore past IPL player statistics, team performances, and match results."
+        description="Explore past IPL player statistics and team analysis."
       />
 
       <Card className="mb-6 p-4 md:p-6 bg-card shadow-lg">
@@ -64,13 +64,12 @@ export default function HistoricalDataPage() {
       </Card>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 mb-4">
-          <TabsTrigger value="playerStats" className="flex items-center gap-2"><Users className="w-4 h-4"/>Player Stats</TabsTrigger>
-          <TabsTrigger value="teamPerformance" className="flex items-center gap-2"><Shield className="w-4 h-4"/>Team Performance</TabsTrigger>
-          <TabsTrigger value="matchHistory" className="flex items-center gap-2"><BarChartHorizontalBig className="w-4 h-4"/>Match History</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-1 md:grid-cols-2 mb-4">
+          <TabsTrigger value="playerAnalysis" className="flex items-center gap-2"><Users className="w-4 h-4"/>Player Analysis</TabsTrigger>
+          <TabsTrigger value="teamAnalysis" className="flex items-center gap-2"><Shield className="w-4 h-4"/>Team Analysis</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="playerStats" className="animate-fadeIn">
+        <TabsContent value="playerAnalysis" className="animate-fadeIn">
           <Card>
             <CardContent className="p-0">
               <Table>
@@ -109,8 +108,14 @@ export default function HistoricalDataPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="teamPerformance" className="animate-fadeIn">
-           <Card>
+        <TabsContent value="teamAnalysis" className="animate-fadeIn space-y-6">
+          <Card>
+            <CardHeader>
+                <CardTitle className="font-headline text-primary flex items-center gap-2">
+                    <Shield className="w-5 h-5"/>
+                    Team Standings
+                </CardTitle>
+            </CardHeader>
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
@@ -142,10 +147,13 @@ export default function HistoricalDataPage() {
               </Table>
             </CardContent>
           </Card>
-        </TabsContent>
-
-        <TabsContent value="matchHistory" className="animate-fadeIn">
-           <Card>
+          <Card>
+            <CardHeader>
+                <CardTitle className="font-headline text-primary flex items-center gap-2">
+                    <BarChartHorizontalBig className="w-5 h-5"/>
+                    Match History
+                </CardTitle>
+            </CardHeader>
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
@@ -179,13 +187,13 @@ export default function HistoricalDataPage() {
           </Card>
         </TabsContent>
       </Tabs>
-      { (activeTab === 'playerStats' && filteredPlayerStats.length === 0) ||
-        (activeTab === 'teamPerformance' && filteredTeamPerformances.length === 0) ||
-        (activeTab === 'matchHistory' && filteredMatchHistory.length === 0) ? (
+      
+      { (activeTab === 'playerAnalysis' && filteredPlayerStats.length === 0) ||
+        (activeTab === 'teamAnalysis' && filteredTeamPerformances.length === 0 && filteredMatchHistory.length === 0) ? (
           <div className="text-center py-12">
             <Filter className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
             <p className="text-xl font-semibold text-muted-foreground">No data found</p>
-            <p className="text-muted-foreground">Try adjusting your search term or check other tabs.</p>
+            <p className="text-muted-foreground">Try adjusting your search term.</p>
           </div>
         ) : null
       }
