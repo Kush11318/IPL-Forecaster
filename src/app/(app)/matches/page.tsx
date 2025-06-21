@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Search, Filter, RotateCcw } from 'lucide-react';
 import React, { useState, useMemo, useEffect } from 'react';
+import { Card } from '@/components/ui/card';
 
 const allMatches = [...mockUpcomingMatches, ...mockHistoricalMatches].sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
