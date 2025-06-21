@@ -1,4 +1,5 @@
 
+
 export interface Match {
   id: string;
   team1: string;
@@ -76,6 +77,20 @@ export interface AnalyzeCustomDatasetInput {
   customDataset: string;
 }
 
+export interface ChartDataPoint {
+  name: string;
+  value: number;
+}
+
+export interface KeyMetric {
+  label: string;
+  value: string;
+  description?: string;
+}
+
 export interface AnalyzeCustomDatasetOutput {
-  analysis: string;
+  summary: string;
+  chartType: 'bar' | 'line' | 'pie' | 'none';
+  chartData: ChartDataPoint[];
+  keyMetrics: KeyMetric[];
 }
