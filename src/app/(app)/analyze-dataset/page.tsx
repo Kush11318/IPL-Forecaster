@@ -4,26 +4,49 @@
 import React, { useState } from 'react';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Sparkles, FileSearch } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Loader2, Sparkles, UploadCloud } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { analyzeCustomDataset } from '@/ai/flows/analyze-custom-dataset-flow';
 import type { AnalyzeCustomDatasetInput, AnalyzeCustomDatasetOutput } from '@/types';
 
 export default function AnalyzeDatasetPage() {
-  const [dataset, setDataset] = useState('');
+  const [file, setFile] = useState<File | null>(null);
+  const [fileContent, setFileContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<AnalyzeCustomDatasetOutput | null>(null);
   const { toast } = useToast();
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target?.result as string;
+        setFileContent(text);
+      };
+      reader.onerror = () => {
+        console.error('Error reading file');
+        toast({
+          variant: "destructive",
+          title: "File Read Error",
+          description: "There was an issue reading your file. Please try again.",
+        });
+      };
+      reader.readAsText(selectedFile);
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!dataset.trim()) {
+    if (!fileContent.trim()) {
       toast({
         variant: "destructive",
-        title: "Dataset Required",
-        description: "Please paste your dataset into the text area.",
+        title: "File Required",
+        description: "Please select a file and ensure it is not empty.",
       });
       return;
     }
@@ -31,7 +54,7 @@ export default function AnalyzeDatasetPage() {
     setIsLoading(true);
     setAnalysisResult(null);
     try {
-      const input: AnalyzeCustomDatasetInput = { customDataset: dataset };
+      const input: AnalyzeCustomDatasetInput = { customDataset: fileContent };
       const result = await analyzeCustomDataset(input);
       setAnalysisResult(result);
     } catch (error) {
@@ -50,28 +73,33 @@ export default function AnalyzeDatasetPage() {
     <div>
       <PageHeader
         title="Analyze Custom Dataset"
-        description="Paste your dataset below and let the AI provide insights."
+        description="Upload your dataset file (CSV, JSON, TXT) and let the AI provide insights."
       />
       <Card className="mb-8">
         <CardHeader>
           <CardTitle className="font-headline text-primary flex items-center gap-2">
-            <FileSearch className="w-6 h-6" />
-            Provide Your Dataset
+            <UploadCloud className="w-6 h-6" />
+            Upload Your Dataset
           </CardTitle>
           <CardDescription>
-            Paste your data (e.g., CSV, JSON, plain text) into the text area below. The AI will attempt to analyze it.
+            Select a file from your device. The AI will attempt to analyze its content.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-            <Textarea
-              placeholder="Paste your dataset here..."
-              value={dataset}
-              onChange={(e) => setDataset(e.target.value)}
-              className="min-h-[200px] resize-y font-mono text-sm"
-              aria-label="Dataset input"
-            />
-            <Button type="submit" disabled={isLoading} className="w-full md:w-auto">
+            <div className="space-y-2">
+              <Label htmlFor="dataset-file">Dataset File</Label>
+              <Input
+                id="dataset-file"
+                type="file"
+                accept=".csv,.json,.txt"
+                onChange={handleFileChange}
+                className="file:text-primary file:font-semibold"
+                aria-label="Dataset file input"
+              />
+              {file && <p className="text-sm text-muted-foreground pt-2">Selected file: <span className="font-medium">{file.name}</span></p>}
+            </div>
+            <Button type="submit" disabled={isLoading || !file} className="w-full md:w-auto">
               {isLoading ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : (
