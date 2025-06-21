@@ -9,24 +9,24 @@ body {
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 159 13% 20%; /* Dark Green text for light background */
+    --foreground: 214 32% 23%;
     --card: 0 0% 100%;
-    --card-foreground: 159 13% 20%;
+    --card-foreground: 214 32% 23%;
     --popover: 0 0% 100%;
-    --popover-foreground: 159 13% 20%;
-    --primary: 42 95% 65%; /* Honey - for light theme */
-    --primary-foreground: 159 13% 15%; /* Dark Green text for honey buttons */
+    --popover-foreground: 214 32% 23%;
+    --primary: 49 100% 50%;
+    --primary-foreground: 214 32% 23%;
     --secondary: 0 0% 96.1%;
-    --secondary-foreground: 159 13% 10%;
+    --secondary-foreground: 214 32% 10%;
     --muted: 0 0% 96.1%;
-    --muted-foreground: 159 13% 45%;
-    --accent: 42 95% 65%; /* Honey - for light theme */
-    --accent-foreground: 159 13% 15%; /* Dark Green text for honey accents */
+    --muted-foreground: 214 32% 45%;
+    --accent: 49 100% 50%;
+    --accent-foreground: 214 32% 23%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 42 95% 65%; /* Honey for rings - for light theme */
+    --border: 214 20% 90%;
+    --input: 214 20% 90%;
+    --ring: 49 100% 50%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -36,59 +36,59 @@ body {
 
     /* Sidebar specific vars for light theme */
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 159 13% 20%;
-    --sidebar-primary: 42 95% 65%;
-    --sidebar-primary-foreground: 159 13% 15%;
-    --sidebar-accent: 42 95% 90%;
-    --sidebar-accent-foreground: 42 95% 50%;
-    --sidebar-border: 0 0% 89.8%;
-    --sidebar-ring: 42 95% 65%;
+    --sidebar-foreground: 214 32% 23%;
+    --sidebar-primary: 49 100% 50%;
+    --sidebar-primary-foreground: 214 32% 23%;
+    --sidebar-accent: 49 100% 90%;
+    --sidebar-accent-foreground: 49 100% 50%;
+    --sidebar-border: 214 20% 90%;
+    --sidebar-ring: 49 100% 50%;
   }
 
   .dark {
-    --background: 159 13% 31%; /* Huntington Green #445952 */
-    --foreground: 42 95% 72%; /* Honey #FBCA72 - Main text color */
+    --background: 214 32% 23%;
+    --foreground: 210 20% 95%;
 
-    --card: 159 13% 34%; /* Slightly lighter Huntington Green */
-    --card-foreground: 42 95% 72%; /* Honey text on card */
+    --card: 214 32% 26%;
+    --card-foreground: 210 20% 95%;
 
-    --popover: 159 13% 28%; /* Slightly darker Huntington Green */
-    --popover-foreground: 42 95% 72%; /* Honey text on popover */
+    --popover: 214 32% 20%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 42 95% 72%; /* Honey #FBCA72 */
-    --primary-foreground: 159 13% 25%; /* Darker Huntington Green - for text on Honey elements */
+    --primary: 49 100% 50%;
+    --primary-foreground: 214 32% 15%;
 
-    --secondary: 159 13% 38%; /* Lighter Huntington Green */
-    --secondary-foreground: 0 0% 98%; /* Light text for better contrast on secondary elements */
+    --secondary: 214 32% 35%;
+    --secondary-foreground: 210 20% 95%;
 
-    --muted: 159 13% 38%; /* Lighter Huntington Green */
-    --muted-foreground: 0 0% 75%; /* Lighter grey for muted text - keep for less prominence */
+    --muted: 214 32% 35%;
+    --muted-foreground: 210 20% 75%;
 
-    --accent: 42 95% 72%; /* Honey #FBCA72 */
-    --accent-foreground: 159 13% 25%; /* Darker Huntington Green - for text on Honey elements */
+    --accent: 49 100% 50%;
+    --accent-foreground: 214 32% 15%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 159 13% 40%; /* Lighter Huntington Green for borders */
-    --input: 159 13% 38%; /* Lighter Huntington Green for input bg */
-    --ring: 42 95% 72%; /* Honey for rings */
+    --border: 214 32% 30%;
+    --input: 214 32% 30%;
+    --ring: 49 100% 50%;
 
-    --chart-1: 42 95% 72%; /* Honey */
-    --chart-2: 42 85% 65%; /* Darker Honey */
-    --chart-3: 159 10% 50%; /* Mid Green */
+    --chart-1: 49 100% 50%; /* Yellow */
+    --chart-2: 49 85% 65%; /* Darker Yellow */
+    --chart-3: 210 10% 50%; /* Mid Blue */
     --chart-4: 30 80% 55%; /* Orange-ish */
     --chart-5: 340 75% 55%; /* Pink-ish */
-
+    
     /* Sidebar specific vars for dark theme */
-    --sidebar-background: 159 13% 28%; /* Slightly darker Green than main bg */
-    --sidebar-foreground: 42 95% 72%; /* Honey text in sidebar */
-    --sidebar-primary: 42 95% 72%; /* Honey */
-    --sidebar-primary-foreground: 159 13% 25%; /* Darker Huntington Green */
-    --sidebar-accent: 159 13% 42%; /* Medium Green for hover states in sidebar */
-    --sidebar-accent-foreground: 42 95% 78%; /* Brighter Honey for text on accent */
-    --sidebar-border: 159 13% 38%;
-    --sidebar-ring: 42 95% 72%;
+    --sidebar-background: 214 32% 20%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 49 100% 50%;
+    --sidebar-primary-foreground: 214 32% 15%;
+    --sidebar-accent: 214 32% 28%;
+    --sidebar-accent-foreground: 49 100% 50%;
+    --sidebar-border: 214 32% 30%;
+    --sidebar-ring: 49 100% 50%;
   }
 }
 
