@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { PageHeader } from '@/components/page-header';
 import { mockPlayerStats, mockTeamPerformances, mockHistoricalMatches } from '@/lib/data';
 import type { PlayerStat, TeamPerformance, Match } from '@/types';
@@ -8,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, Filter, Users, Shield, BarChartHorizontalBig, RotateCcw } from 'lucide-react';
+import { Search, Filter, Users, Shield, BarChartHorizontalBig, RotateCcw, Eye } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function HistoricalDataPage() {
@@ -84,6 +85,7 @@ export default function HistoricalDataPage() {
                     <TableHead>Wickets</TableHead>
                     <TableHead>Bowl Avg</TableHead>
                     <TableHead>Eco</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -98,9 +100,17 @@ export default function HistoricalDataPage() {
                       <TableCell>{stat.wicketsTaken ?? '-'}</TableCell>
                       <TableCell>{stat.bowlingAverage?.toFixed(2) ?? '-'}</TableCell>
                       <TableCell>{stat.economyRate?.toFixed(2) ?? '-'}</TableCell>
+                       <TableCell className="text-right">
+                        <Button variant="ghost" size="icon" asChild>
+                            <Link href={`/player-analysis/${stat.playerId}`}>
+                                <Eye className="h-4 w-4" />
+                                <span className="sr-only">View Analysis</span>
+                            </Link>
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   )) : (
-                     <TableRow><TableCell colSpan={9} className="text-center">No player stats found.</TableCell></TableRow>
+                     <TableRow><TableCell colSpan={10} className="text-center">No player stats found.</TableCell></TableRow>
                   )}
                 </TableBody>
               </Table>

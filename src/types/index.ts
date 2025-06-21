@@ -94,3 +94,20 @@ export interface AnalyzeCustomDatasetOutput {
   chartData: ChartDataPoint[];
   keyMetrics: KeyMetric[];
 }
+
+// For analyzePlayerPerformance AI flow
+export interface AnalyzePlayerPerformanceInput {
+  playerName: string;
+  team: string;
+  matchesPlayed: number;
+  runsScored?: number;
+  battingAverage?: number;
+  strikeRate?: number;
+  wicketsTaken?: number;
+  bowlingAverage?: number;
+  economyRate?: number;
+}
+
+export interface AnalyzePlayerPerformanceOutput {
+    analysis: string;
+}
